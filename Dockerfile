@@ -19,26 +19,10 @@ RUN pip install --upgrade pip
 RUN pip install -r /usr/src/spatialdatahub.org/requirements.txt
 
 # copy entrypoint.sh
-#COPY ./entrypoint.sh /usr/src/spatialdatahub.org/entrypoint.sh
-
-#RUN chmod +x /usr/src/spatialdatahub.org/entrypoint.sh
-
-# copy project
-#COPY . /usr/src/spatialdatahub.org/
-
-# RUN ls /usr/src/spatialdatahub.org/
-
-# run entrypoint.sh
-#ENTRYPOINT ["/usr/src/spatialdatahub.org/entrypoint.sh"]
-#CMD ["sh", "-c", "chmod 777 /usr/src/spatialdatahub.org/entrypoint.sh && /usr/src/spatialdatahub.org/entrypoint.sh"]
-
-# copy entrypoint.sh
 COPY ./entrypoint.sh /usr/src/spatialdatahub.org/entrypoint.sh
 
 # copy project
 COPY . /usr/src/spatialdatahub.org/
-
-RUN which nc
 
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/spatialdatahub.org/entrypoint.sh"]
