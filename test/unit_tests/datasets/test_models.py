@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.utils import IntegrityError
 from django.test import TestCase
+from unittest import mock
 
 from datasets.models import Dataset
 from accounts.models import Account
@@ -39,6 +40,7 @@ class DatasetModelTests(TestCase):
             url="https://storage.googleapis.com/maps-devrel/google.json",
             public_access=True)
 
+        # I need to change this up. It is associated with an account 
         self.ds2 = Dataset.objects.create(
            account=self.a1,
            author="zmtdummy",
@@ -161,5 +163,6 @@ class DatasetModelTests(TestCase):
         bytes_user = dataset.dataset_user.encode("utf-8")
         decrypted_user = cipher_end.decrypt(bytes_user).decode("utf-8")
         self.assertEqual(decrypted_user, "zmtdummy")
+
 
 
